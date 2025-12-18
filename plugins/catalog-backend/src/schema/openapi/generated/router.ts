@@ -840,6 +840,10 @@ export const spec = {
       post: {
         operationId: 'RefreshEntity',
         tags: ['Entity'],
+        'x-backstage-permissions': {
+          permission: 'catalog.entity.refresh',
+          onDeny: 403,
+        },
         description: 'Refresh the entity related to entityRef.',
         responses: {
           '200': {
@@ -1057,6 +1061,10 @@ export const spec = {
       get: {
         operationId: 'GetEntityAncestryByName',
         tags: ['Entity'],
+        'x-backstage-permissions': {
+          permission: 'catalog.entity.read',
+          validateManually: true,
+        },
         description: "Get an entity's ancestry by entity ref.",
         responses: {
           '200': {
@@ -1453,6 +1461,10 @@ export const spec = {
       post: {
         operationId: 'CreateLocation',
         tags: ['Locations'],
+        'x-backstage-permissions': {
+          permission: 'catalog.locations.create',
+          onDeny: 403,
+        },
         description: 'Create a location for a given target.',
         responses: {
           '201': {
@@ -1539,6 +1551,10 @@ export const spec = {
       get: {
         operationId: 'GetLocations',
         tags: ['Locations'],
+        'x-backstage-permissions': {
+          permission: 'catalog.locations.read',
+          validateManually: true,
+        },
         description: 'Get all locations',
         responses: {
           '200': {
@@ -1625,6 +1641,10 @@ export const spec = {
     '/locations/{id}': {
       get: {
         operationId: 'GetLocation',
+        'x-backstage-permissions': {
+          permission: 'catalog.locations.read',
+          onDeny: 404,
+        },
         tags: ['Locations'],
         description: 'Get a location by id.',
         responses: {
@@ -1708,6 +1728,9 @@ export const spec = {
       },
       delete: {
         operationId: 'DeleteLocation',
+        'x-backstage-permissions': {
+          permission: 'catalog.locations.delete',
+        },
         tags: ['Locations'],
         description: 'Delete a location by id.',
         responses: {
@@ -1744,6 +1767,10 @@ export const spec = {
         operationId: 'getLocationByEntity',
         tags: ['Locations'],
         description: 'Get a location for entity.',
+        'x-backstage-permissions': {
+          permission: 'catalog.locations.read',
+          onDeny: 404,
+        },
         responses: {
           '200': {
             description: 'Ok',
