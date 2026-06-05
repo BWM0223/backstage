@@ -13,6 +13,7 @@ import { ExtensionBlueprint } from '@backstage/frontend-plugin-api';
 import { ExtensionDataRef } from '@backstage/frontend-plugin-api';
 import { ExtensionDefinition } from '@backstage/frontend-plugin-api';
 import { FilterPredicate } from '@backstage/filter-predicates';
+import { HeaderNavTabItem } from '@backstage/ui';
 import { IconLinkVerticalProps } from '@backstage/core-components';
 import { JSX as JSX_2 } from 'react';
 import { JSX as JSX_3 } from 'react/jsx-runtime';
@@ -527,7 +528,7 @@ export interface EntityDataTableProps {
   loading?: boolean;
 }
 
-// @alpha (undocumented)
+// @alpha @deprecated (undocumented)
 export const EntityHeaderBlueprint: ExtensionBlueprint<{
   kind: 'entity-header';
   params: {
@@ -569,6 +570,11 @@ export const EntityHeaderBlueprint: ExtensionBlueprint<{
       'catalog.entity-filter-function',
       {}
     >;
+    filterExpression: ConfigurableExtensionDataRef<
+      string,
+      'catalog.entity-filter-expression',
+      {}
+    >;
     element: ConfigurableExtensionDataRef<
       JSX_2.Element,
       'core.reactElement',
@@ -576,6 +582,67 @@ export const EntityHeaderBlueprint: ExtensionBlueprint<{
     >;
   };
 }>;
+
+// @alpha (undocumented)
+export const EntityHeaderLayoutBlueprint: ExtensionBlueprint<{
+  kind: 'entity-header-layout';
+  params: {
+    filter?: string | FilterPredicate | ((entity: Entity) => boolean);
+    loader: () => Promise<(props: EntityHeaderLayoutProps) => JSX_2.Element>;
+  };
+  output:
+    | ExtensionDataRef<
+        (entity: Entity) => boolean,
+        'catalog.entity-filter-function',
+        {
+          optional: true;
+        }
+      >
+    | ExtensionDataRef<
+        string,
+        'catalog.entity-filter-expression',
+        {
+          optional: true;
+        }
+      >
+    | ExtensionDataRef<
+        (props: EntityHeaderLayoutProps) => JSX_2.Element,
+        'catalog.entity-header-layout.component',
+        {}
+      >;
+  inputs: {};
+  config: {
+    filter: FilterPredicate | undefined;
+  };
+  configInput: {
+    filter?: FilterPredicate | undefined;
+  };
+  dataRefs: {
+    filterFunction: ConfigurableExtensionDataRef<
+      (entity: Entity) => boolean,
+      'catalog.entity-filter-function',
+      {}
+    >;
+    filterExpression: ConfigurableExtensionDataRef<
+      string,
+      'catalog.entity-filter-expression',
+      {}
+    >;
+    component: ConfigurableExtensionDataRef<
+      (props: EntityHeaderLayoutProps) => JSX_2.Element,
+      'catalog.entity-header-layout.component',
+      {}
+    >;
+  };
+}>;
+
+// @alpha (undocumented)
+export interface EntityHeaderLayoutProps {
+  // (undocumented)
+  activeTabId?: string;
+  // (undocumented)
+  tabs: HeaderNavTabItem[];
+}
 
 // @alpha (undocumented)
 export const EntityIconLinkBlueprint: ExtensionBlueprint<{
