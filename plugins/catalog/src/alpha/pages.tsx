@@ -221,6 +221,8 @@ export const catalogEntityPage = PageBlueprint.makeWithOverrides({
             (() => true),
         }));
 
+        // Prefer filtered contributions within each header family. A future
+        // priority or specificity value could provide more precise ordering.
         const headerLayouts = inputs.headerLayouts
           .map(layout => {
             const filterFunction = layout.get(
