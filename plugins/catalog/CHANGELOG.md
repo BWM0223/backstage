@@ -1,5 +1,16 @@
 # @backstage/plugin-catalog
 
+## 2.0.6-next.2
+
+### Patch Changes
+
+- 7172386: Updated the new frontend system Catalog index page to use the current Backstage UI page header and content container.
+- d7c1dcf: Fixed a missing React key warning for context menu items on the entity page.
+- Updated dependencies
+  - @backstage/plugin-catalog-react@3.1.0-next.2
+  - @backstage/ui@0.16.0-next.1
+  - @backstage/core-compat-api@0.5.12-next.2
+
 ## 2.0.6-next.1
 
 ### Patch Changes
